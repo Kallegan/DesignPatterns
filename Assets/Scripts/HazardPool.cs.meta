@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: d886898975988b442985ceb239e9fbbe
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - hazardPrefab: {fileID: 8757542137131760697, guid: 5893f90059046e14d85c3cc2f43475b9, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
