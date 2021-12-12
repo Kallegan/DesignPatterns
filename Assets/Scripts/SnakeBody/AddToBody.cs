@@ -37,8 +37,7 @@ namespace SnakeBody
                  bodyM.AddBodyParts(body);
                  bodyM.RemoveBodyTail();
                  bodyM.AddBodyParts(tail);
-                 _segmentGrowth = 0.3f; //made a slight delay so prefabs added would not stack to close when user gets
-                 //lucky and have collectables spawn too close.
+                 _segmentGrowth = 0.3f; //made a slight delay so prefabs would get added with correct distance.
             }
         }
 

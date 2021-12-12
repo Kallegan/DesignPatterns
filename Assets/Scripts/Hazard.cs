@@ -6,15 +6,11 @@ using Audio;
 
 public class Hazard : MonoBehaviour
 {
-    public BoxCollider2D gridArea;
-    
     private float speed;
     void Start()
     {
-        RandomPosition();
-        speed = Random.Range(100, 200); //wanted different speed for meteor after each "respawn" so used random.
+        speed = Random.Range(50, 100); //wanted different speed for meteor after each "respawn" so used random.
     }
-
 
     public void FixedUpdate()
     {
@@ -30,13 +26,13 @@ public class Hazard : MonoBehaviour
             GameManager.instance.GameOver();
         }
     }
-    
-    private void RandomPosition()
+
+    public void OnTriggerExit2D(Collider2D other)
     {
-        Bounds bounds = gridArea.bounds;
-        float x = Random.Range(bounds.max.x, bounds.max.x+10);
-        float y = bounds.max.y;
-        transform.position = new Vector3(Mathf.Round(x), Mathf.Round(y), 0.0f);
-        Debug.Log("randompos");
+        if(other.tag == "GridArea")
+        {
+            HazardPool.instance.ReturnToPool(gameObject);
+        }
     }
+
 }

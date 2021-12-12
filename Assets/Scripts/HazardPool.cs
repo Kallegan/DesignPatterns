@@ -7,48 +7,40 @@ using Random = UnityEngine.Random;
 public class HazardPool : MonoBehaviour
 {
     [SerializeField] private GameObject hazardPrefab;
+    
+    public BoxCollider2D gridArea;
 
     private Queue<GameObject> _hazardsQueue = new Queue<GameObject>();
-    
-    private float spawnRate;
-    
-    
+
+    public float spawnRate = 4f;
     public static HazardPool instance { get; private set; }
 
     private void Awake()
     {
-        if (instance != null)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject); //keeps game object holding the game manager from getting removed from scene.
-        }
+        instance = this;
     }
 
     private void Start()
     {
-        spawnRate = Random.Range(3f, 5f); //sets spawn rate for hazard, random range.
         StartSpawning();
     }
 
     private void StartSpawning()
     {
+        RandomPosition();
         InvokeRepeating(nameof(SpawnMeteor), spawnRate,spawnRate); //invokes new spawns depending on spawnrate.
     }
 
     private void OnEnable()
     {
-        AddHazards(10);
+        AddHazards(3); //preloads 3 hazards before anything spawns.
     }
 
     public GameObject Get()
     {
         if (_hazardsQueue.Count == 0)
         {
-            AddHazards(1);
+            AddHazards(3);
         }
 
         return _hazardsQueue.Dequeue();
@@ -74,11 +66,20 @@ public class HazardPool : MonoBehaviour
     private void SpawnMeteor()
     {
         var hazard = instance.Get();
+        hazard.transform.position = transform.position;
         hazard.SetActive(true);
-        Debug.Log("spawning");
-
+        RandomPosition(); //after each hazard hazard activation, the spawner will relocate with a new x position
+        // so each spawn will get a different spawn location.
     }
-    
+
+    private void RandomPosition() 
+    {
+        Bounds bounds = gridArea.bounds; //getting the bounds for  the grid area.
+        float x = Random.Range(bounds.min.x, bounds.max.x); //randomizing the position on the x-axis for the spawner.
+        float y = bounds.max.y; //position of the outer y-axis.
+        transform.position = new Vector3(x, y, 0.0f); //setting new pos.
+    }
+
 }
 
 

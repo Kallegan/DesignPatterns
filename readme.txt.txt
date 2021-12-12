@@ -6,7 +6,7 @@ collects would be rewarded by incrementing total score.
 
 Patterns:
 - Singleton, used a few for game objects that I just wanted one instance of, like
-Game Manager, object pool and Audio Manager. The AudioManager implementation is
+Game Manager and Audio Manager. The AudioManager implementation is
 AudioManager.cs in class AudioManager as Audiomanager.instance
 Used to make sounds easy to play from everywhere and to keep the sound manager playing
 music between menu / game scene.

@@ -95,25 +95,21 @@ namespace SnakeBody
                 if (bounds.max.x< _mainBody[0].transform.position.x && bounds.min.y < _mainBody[0].transform.position.y)
                 {
                     _mainBody[0].transform.position = new Vector3(bounds.min.x, _mainBody[0].transform.position.y, 0.0f);
-                    Triggers.outOfBound = false;
                 }
             
                 if (bounds.min.x > _mainBody[0].transform.position.x && bounds.min.y < _mainBody[0].transform.position.y)
                 {
                     _mainBody[0].transform.position = new Vector3(bounds.max.x, _mainBody[0].transform.position.y, 0.0f);
-                    Triggers.outOfBound = false;
                 }
 
                 if (bounds.min.x<_mainBody[0].transform.position.x && bounds.min.y>_mainBody[0].transform.position.y)
                 {
                     _mainBody[0].transform.position = new Vector3(_mainBody[0].transform.position.x, bounds.max.y, 0.0f);
-                    Triggers.outOfBound = false;
                 }
             
                 if (bounds.max.x>_mainBody[0].transform.position.x && bounds.max.y<_mainBody[0].transform.position.y)
                 {
                     _mainBody[0].transform.position = new Vector3(_mainBody[0].transform.position.x, bounds.min.y, 0.0f);
-                    Triggers.outOfBound = false;
                 }
             }
         }
